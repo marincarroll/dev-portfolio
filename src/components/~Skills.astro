@@ -1,0 +1,38 @@
+---
+import HTML from "@/icons/html.astro";
+import CSS from "@/icons/css.astro";
+import JavaScript from "@/icons/javascript.astro";
+import React from "@/icons/react.astro";
+import Node from "@/icons/node.astro";
+import MySQL from "@/icons/sql.astro";
+import Git from "@/icons/git.astro";
+import GitHub from "@/icons/GitHub.astro";
+import { skills } from "@cv";
+import Figma from "@/icons/Figma.astro";
+
+const SKILLS_ICONS: Record<string, any> = {
+	HTML,
+	CSS,
+	JavaScript,
+	React,
+	Node,
+	MySQL,
+	Git,
+	GitHub,
+	Figma,
+};
+---
+
+<ul>
+	{
+		skills.map(({ name }) => {
+			const Icon = SKILLS_ICONS[name];
+
+			return (
+				<li>
+					{Icon && <Icon />} <span>{name}</span>
+				</li>
+			);
+		})
+	}
+</ul>
