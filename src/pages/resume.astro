@@ -1,0 +1,12 @@
+---
+import Education from "../components/Education.astro";
+import Layout from "../layouts/Layout.astro";
+import Work from "../components/Work.astro";
+---
+<Layout title="Résumé" id="resume"  className="is-dark">
+    <button onclick="window.print()">Print Resume</button>
+    <section class="resume__page">
+        <Education/>
+        <Work/>
+    </section>
+</Layout>

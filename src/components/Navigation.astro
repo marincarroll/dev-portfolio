@@ -1,0 +1,58 @@
+---
+const currentItem = Astro.props.currentItem || 'about';
+
+// TODO move somewhere?
+const navItems = [
+    {
+        title: 'Contact',
+        id: 'contact'
+    },
+    {
+        title: 'About',
+        id: 'about'
+    },
+    {
+        title: 'Résumé',
+        id: 'resume'
+    }
+];
+
+if( currentItem !== 'about' ) {
+    navItems.reverse();
+}
+
+---
+
+<nav class="navigation">
+    { navItems.map( ( {id, title} ) => (
+        id !== currentItem && (
+            <a href={id !== 'about' ? id : '/' } class="navigation__tab">
+                {title}
+            </a>
+        )
+    ) ) }
+</nav>
+<style>
+    .navigation {
+        z-index: 1;
+    }
+
+    .navigation__tab {
+        background: var(--color--foreground);
+        color: var(--color--background);
+        position: absolute;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        padding: 1.5rem 2.5rem;
+        text-decoration: none;
+    }
+
+    .navigation__tab:first-child {
+        top: 0;
+    }
+
+    .navigation__tab:last-child {
+        bottom: 0;
+    }
+</style>
