@@ -1,5 +1,6 @@
 ---
-const currentItem = Astro.props.currentItem || 'about';
+const { currentItem, class: className } = Astro.props;
+import { popFromBottom, popFromTop } from "../animations/tab-pop";
 
 // TODO move somewhere?
 const navItems = [
@@ -24,35 +25,50 @@ if( currentItem !== 'about' ) {
 ---
 
 <nav class="navigation">
-    { navItems.map( ( {id, title} ) => (
-        id !== currentItem && (
-            <a href={id !== 'about' ? id : '/' } class="navigation__tab">
+    { navItems.filter(
+        item => item.id !== currentItem
+    ).map( ( {id, title}, index ) => {
+        const direction = index ? 'down' : 'up';
+        const animation = index ? popFromBottom : popFromTop;
+
+        return (
+            <a href={id} class:list={["navigation__tab", className]} data-direction={direction} transition:animate={animation}>
                 {title}
             </a>
         )
-    ) ) }
+    }
+    ) }
 </nav>
 <style>
     .navigation {
         z-index: 1;
+        display: flex;
+        justify-content: center;
     }
 
     .navigation__tab {
-        background: var(--color--foreground);
-        color: var(--color--background);
         position: absolute;
+        height: var(--nav-height);
         display: flex;
-        text-align: center;
         align-items: center;
-        padding: 1.5rem 2.5rem;
+        padding-inline: 2.5rem;
         text-decoration: none;
+        transition: transform 0.4s;
     }
 
-    .navigation__tab:first-child {
+    .navigation__tab[data-direction="up"] {
         top: 0;
     }
 
-    .navigation__tab:last-child {
+    .navigation__tab[data-direction="down"]{
         bottom: 0;
     }
+
 </style>
+<script is:inline>
+    document.addEventListener('astro:before-preparation', event => {
+        if( event.sourceElement.dataset.direction === 'up' ) {
+            event.direction = 'backward';
+        }
+    });
+</script>

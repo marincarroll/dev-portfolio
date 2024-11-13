@@ -6,9 +6,23 @@ const { name, summary, label, location } = basics;
 const { city, region } = location;
 
 ---
-<Layout title="About">
+<Layout title="About" pageName="about">
 	<h1>{name}</h1>
 	<h2>{label}</h2>
 	<p>{city}, {region}</p>
 	<p>{summary}</p>
+
 </Layout>
+<style>
+	:global(.page__content) {
+		margin: 2vw;
+		background: var(--color--light);
+		color: var(--color--dark);
+		border-radius: 2vw;
+		border: 2vw solid transparent;
+	}
+
+	.about-card {
+
+	}
+</style>

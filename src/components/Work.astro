@@ -26,72 +26,69 @@ const SKILLS_ICONS: Record<string, any> = {
                  responsibilities,
                  achievements,
                  skills,
-             }) => {
+            }) => {
 
                 const startYear = new Date(startDate).getFullYear()
                 const endYear = endDate != null ? new Date(endDate).getFullYear() : "Present"
 
                 return (
-                        <li>
-                            <div class="grid sm:grid-cols-12 sm:gap-8 md:gap-6">
-                                <header>
-                                    <time datetime={startDate} data-title={startDate}>{startYear}</time>
-                                    -
-                                    <time datetime={endDate} data-title={endDate}>{endYear}</time>
-                                </header>
-                                <div class="sm:col-span-10">
-                                    <h3>{position} {name}</h3>
-                                    <div>
-                                        {summary && (
-                                                <ul>
-                                                    {Array.isArray(summary) ? (
-                                                        summary.map(item => (
-                                                            {item}
-                                                        ))
-                                                    ) : (
-                                                            <li>{summary}</li>
-                                                    )}
-                                                </ul>
-                                        )}
+                    <li>
+                        <header>
+                            <time datetime={startDate} data-title={startDate}>{startYear}</time>
+                            -
+                            <time datetime={endDate} data-title={endDate}>{endYear}</time>
+                        </header>
+                        <h3>{position} {name}</h3>
+                        <div>
+                            {summary && (
+                                <ul>
+                                    {Array.isArray(summary) ? (
+                                        summary.map(item => (
+                                            {item}
+                                        ))
+                                    ) : (
+                                            <li>{summary}</li>
+                                    )}
+                                </ul>
+                            )}
 
-                                        {responsibilities && (
-                                                <div>
-                                                    <h4>Responsibilities:</h4>
-                                                    <ul>
-                                                        {responsibilities.map(responsibility => (
-                                                                <li>{responsibility}</li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                        )}
-
-                                        {achievements && (
-                                                <div>
-                                                    <h4>Achievements:</h4>
-                                                    <ul>
-                                                        {achievements.map(achievement => (
-                                                                <li>{achievement}</li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                        )}
-                                    </div>
-
-                                    <ul class="flex flex-wrap gap-2" aria-label="Technologies used">
-                                        {skills && skills.map(skill => {
-                                            const Icon = SKILLS_ICONS[skill]
-                                            return (
-                                                    <li class="flex gap-1 border-solid px-2 py-0.5 text-xs">
-                                                        {Icon &&
-                                                                <Icon/>} <span>{skill}</span>
-                                                    </li>
-                                            )
-                                        })}
+                            {responsibilities && (
+                                <div>
+                                    <h4>Responsibilities:</h4>
+                                    <ul>
+                                        {responsibilities.map(responsibility => (
+                                                <li>{responsibility}</li>
+                                        ))}
                                     </ul>
                                 </div>
-                            </div>
-                        </li>
+                            )}
+
+                            {achievements && (
+                                <div>
+                                    <h4>Achievements:</h4>
+                                    <ul>
+                                        {achievements.map(achievement => (
+                                                <li>{achievement}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+
+                    {/*<ul aria-label="Technologies used">
+                            {skills && skills.map(skill => {
+                                const Icon = SKILLS_ICONS[skill]
+                                return (
+                                        <li class="flex gap-1 border-solid px-2 py-0.5 text-xs">
+                                            {Icon &&
+                                                    <Icon/>} <span>{skill}</span>
+                                        </li>
+                                )
+                            })}
+                        </ul>*/}
+                    </li>
                 )
-            })}
+            })
+        }
     </ul>
 </section>
