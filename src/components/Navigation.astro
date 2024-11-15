@@ -22,6 +22,12 @@ if( currentItem !== 'about' ) {
     navItems.reverse();
 }
 
+const svgAttributes = {
+    viewBox: "0 0 300 123",
+    height: '100%',
+    preserveAspectRatio: 'none',
+    fill: "var(--color--light)",
+}
 ---
 
 <nav class="navigation">
@@ -33,11 +39,16 @@ if( currentItem !== 'about' ) {
 
         return (
             <a href={id} class:list={["navigation__tab", className]} data-direction={direction} transition:animate={animation}>
-                {title}
+                <svg class="navigation__tab-left" {...svgAttributes}>
+                    <path  d="M0,123s74-3,105-20c36.72-20.14,51.93-59.53,64-72C199,0,242.5,0,242.5,0h57.5v123H0Z"/>
+                </svg>
+                <div class="navigation__tab-center">{title}</div>
+                <svg class="navigation__tab-right" {...svgAttributes}>
+                    <path fill="var(--color--light)" d="M300,123s-74-3-105-20c-36.72-20.14-51.93-59.53-64-72C101,0,57.5,0,57.5,0H0v123h300Z"/>
+                </svg>
             </a>
         )
-    }
-    ) }
+    } ) }
 </nav>
 <style>
     .navigation {
@@ -50,14 +61,32 @@ if( currentItem !== 'about' ) {
         position: absolute;
         height: var(--nav-height);
         display: flex;
-        align-items: center;
+        color: var(--color--dark);
         padding-inline: 2.5rem;
         text-decoration: none;
         transition: transform 0.4s;
     }
 
+    .navigation__tab-center {
+        background-color: var(--color--light);
+        display: flex;
+        align-items: center;
+        margin-inline: -1px;
+        z-index: 1;
+    }
+
+    .navigation__tab-right,
+    .navigation__tab-left {
+        aspect-ratio: 1.7;
+    }
+
     .navigation__tab[data-direction="up"] {
         top: 0;
+    }
+
+    .navigation__tab[data-direction="up"] .navigation__tab-right,
+    .navigation__tab[data-direction="up"] .navigation__tab-left {
+        transform: scale(1, -1);
     }
 
     .navigation__tab[data-direction="down"]{
