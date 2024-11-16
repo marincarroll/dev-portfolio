@@ -6,19 +6,23 @@ const { pageName } = Astro.props;
 ---
 <section class:list={['page', pageName]} transition:animate={verticalSlide}>
     <div class="page__content">
-        <Navigation currentItem={pageName} />
+        <slot/>
     </div>
-    <slot/>
+    <Navigation currentItem={pageName} />
 </section>
 <style>
     .page {
         height: 100vh;
-        //padding: var(--nav-height);
-       // display: flex;
-        justify-content: center;
+        background: var(--color--background);
+        color: var(--color--foreground);
+        display: flex;
+        flex-direction: column;
+        padding: var(--border-height);
         overflow: hidden;
-        background: var(--color--dark);
-        color: var(--color--light);
+    }
+
+    .page__content {
+        padding: var(--nav-height);
     }
 
     @keyframes enterUp {
@@ -44,5 +48,4 @@ const { pageName } = Astro.props;
             transform: translateY(100%);
         }
     }
-
 </style>

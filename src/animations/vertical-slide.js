@@ -1,26 +1,27 @@
 // TODO typescript
-
-const VERTICAL_SLIDE_DURATION = '0.8s';
-
+const SLIDE_PROPS = {
+  duration: '0.8s',
+  delay: '0.8s'
+}
 export default {
   forward: {
     old: {
       name: 'exitUp',
-      duration: VERTICAL_SLIDE_DURATION,
+      ...SLIDE_PROPS
     },
     new: {
       name: 'enterUp',
-      duration: VERTICAL_SLIDE_DURATION,
+      ...SLIDE_PROPS
     }
   },
   backward: {
     old: {
       name: 'exitDown',
-      duration: VERTICAL_SLIDE_DURATION,
+      ...SLIDE_PROPS
     },
     new: {
       name: 'enterDown',
-      duration: VERTICAL_SLIDE_DURATION,
+      ...SLIDE_PROPS
     },
   },
 };
