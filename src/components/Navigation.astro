@@ -26,7 +26,7 @@ const svgAttributes = {
     viewBox: "0 0 300 123",
     height: '100%',
     preserveAspectRatio: 'none',
-    fill: "var(--color--light)",
+    fill: "var(--color--foreground)",
 }
 ---
 
@@ -44,7 +44,7 @@ const svgAttributes = {
                 </svg>
                 <div class="navigation__tab-center">{title}</div>
                 <svg class="navigation__tab-right" {...svgAttributes}>
-                    <path fill="var(--color--light)" d="M300,123s-74-3-105-20c-36.72-20.14-51.93-59.53-64-72C101,0,57.5,0,57.5,0H0v123h300Z"/>
+                    <path d="M300,123s-74-3-105-20c-36.72-20.14-51.93-59.53-64-72C101,0,57.5,0,57.5,0H0v123h300Z"/>
                 </svg>
             </a>
         )
@@ -61,14 +61,13 @@ const svgAttributes = {
         position: absolute;
         height: var(--nav-height);
         display: flex;
-        color: var(--color--dark);
-        padding-inline: 2.5rem;
+        color: var(--color--background);
         text-decoration: none;
         transition: transform 0.4s;
     }
 
     .navigation__tab-center {
-        background-color: var(--color--light);
+        background-color: var(--color--foreground);
         display: flex;
         align-items: center;
         margin-inline: -1px;
@@ -81,7 +80,7 @@ const svgAttributes = {
     }
 
     .navigation__tab[data-direction="up"] {
-        top: 0;
+        top: var(--border-height);
     }
 
     .navigation__tab[data-direction="up"] .navigation__tab-right,
@@ -90,9 +89,20 @@ const svgAttributes = {
     }
 
     .navigation__tab[data-direction="down"]{
-        bottom: 0;
+        bottom: var(--border-height);
     }
 
+    @keyframes popDown {
+        to {
+            transform: translateY(calc(-100% - var(--border-height)));
+        }
+    }
+
+    @keyframes popUp {
+        to {
+            transform: translateY(calc(100% + var(--border-height)));
+        }
+    }
 </style>
 <script is:inline>
     document.addEventListener('astro:before-preparation', event => {

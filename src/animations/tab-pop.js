@@ -3,25 +3,26 @@ const TAB_POP_DURATION = '0.55s';
 
 const popFromTopAnimationPair = {
   old:  {
-    name: 'exitUp',
+    name: 'popDown',
     duration: TAB_POP_DURATION,
   },
   new: {
-    name: 'enterDown',
+    name: 'popDown',
     duration: TAB_POP_DURATION,
-    delay: TAB_POP_DURATION
+    direction: 'reverse'
   }
 }
 
 const popFromBottomAnimationPair = {
   old: {
-    name: 'exitDown',
+    name: 'popUp',
     duration: TAB_POP_DURATION,
   },
   new: {
-    name: 'enterUp',
+    name: 'popUp',
     duration: TAB_POP_DURATION,
-    delay: TAB_POP_DURATION
+    direction: 'reverse'
+    //   delay: TAB_POP_DURATION
   }
 }
 
