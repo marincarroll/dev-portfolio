@@ -1,5 +1,5 @@
 ---
-import verticalSlide from "../animations/vertical-slide";
+import { verticalSlide } from "../animations/vertical-slide";
 import Navigation from "../components/Navigation.astro";
 
 const { pageName } = Astro.props;
@@ -13,37 +13,86 @@ const { pageName } = Astro.props;
 <style>
     .page {
         height: 100vh;
-        background: var(--color--background);
-        color: var(--color--foreground);
+        background: var(--color--foreground);
         display: flex;
         flex-direction: column;
-        padding: var(--border-height);
+        align-items: center;
         overflow: hidden;
     }
 
     .page__content {
+        background: var(--color--background);
+        color: var(--color--foreground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: var(--nav-height);
+        max-height: 100%;
+        width: 100%;
+        flex: 1;
     }
 
-    @keyframes enterUp {
-        from {
-            transform: translateY(100%);
-        }
+    .page:not(.about):before,
+    .page:not(.about):after {
+        background: var(--color--foreground);
+        height: var(--border-height);
+        content: '';
+        position: absolute;
+        width: calc(100% - (2*var(--border-height)));
     }
 
-    @keyframes exitUp {
+    .page:before {
+        top: 0;
+        border-radius: 0 0 var(--border-height) var(--border-height);
+    }
+
+    .page:after {
+        bottom: 0;
+        border-radius: var(--border-height) var(--border-height)  0 0 ;
+    }
+
+    .about {
+        --color--foreground: var(--color--dark);
+        --color--background: var(--color--light);
+    }
+
+    .about {
+        padding: var(--border-height);
+    }
+
+    .about .page__content {
+        border-radius: var(--border-height);
+    }
+
+    .page.resume:after {
+        --color--foreground: var(--color--dark);
+    }
+
+    .page.resume:after,
+    .page.contact:before {
+        max-width: 45em;
+       left: var(--nav-height);
+    }
+
+    :global( .resume .navigation__tab[data-direction="down"] ) {
+        --color--foreground: var(--color--dark);
+        --color--background: var(--color--light);
+    }
+
+    .resume .page__content {
+        padding-block: 10em 0;
+        align-items: start;
+        flex-direction: column;
+    }
+
+
+    @keyframes slideUp {
         to {
             transform: translateY(-100%);
         }
     }
 
-    @keyframes enterDown {
-        from {
-            transform: translateY(-100%);
-        }
-    }
-
-    @keyframes exitDown {
+    @keyframes slideDown {
         to {
             transform: translateY(100%);
         }

@@ -1,28 +1,31 @@
 // TODO typescript
-const TAB_POP_DURATION = '0.55s';
+import {VERTICAL_SLIDE_DURATION} from './vertical-slide';
+const TAB_POP_DURATION = 0.55;
+const DELAY = VERTICAL_SLIDE_DURATION + TAB_POP_DURATION;
 
 const popFromTopAnimationPair = {
   old:  {
     name: 'popDown',
-    duration: TAB_POP_DURATION,
+    duration: `${TAB_POP_DURATION}s`,
   },
   new: {
     name: 'popDown',
-    duration: TAB_POP_DURATION,
-    direction: 'reverse'
+    duration: `${TAB_POP_DURATION}s`,
+    direction: 'reverse',
+    delay: `${DELAY}s`,
   }
 }
 
 const popFromBottomAnimationPair = {
   old: {
     name: 'popUp',
-    duration: TAB_POP_DURATION,
+    duration: `${TAB_POP_DURATION}s`,
   },
   new: {
     name: 'popUp',
-    duration: TAB_POP_DURATION,
-    direction: 'reverse'
-    //   delay: TAB_POP_DURATION
+    duration: `${TAB_POP_DURATION}s`,
+    direction: 'reverse',
+    delay: `${DELAY}s`,
   }
 }
 

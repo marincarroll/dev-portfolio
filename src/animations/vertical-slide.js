@@ -1,27 +1,33 @@
 // TODO typescript
-const SLIDE_PROPS = {
-  duration: '0.8s',
-  delay: '0.8s'
+export const VERTICAL_SLIDE_DURATION = 0.7;
+
+const slideAnimationProps = {
+  duration: `${VERTICAL_SLIDE_DURATION}s`,
+  delay: `${VERTICAL_SLIDE_DURATION}s`,
+  easing: 'linear',
 }
-export default {
+
+export const verticalSlide = {
   forward: {
     old: {
-      name: 'exitUp',
-      ...SLIDE_PROPS
+      name: 'slideUp',
+      ...slideAnimationProps,
     },
     new: {
-      name: 'enterUp',
-      ...SLIDE_PROPS
+      name: 'slideDown',
+      ...slideAnimationProps,
+      direction: 'reverse',
     }
   },
   backward: {
     old: {
-      name: 'exitDown',
-      ...SLIDE_PROPS
+      name: 'slideDown',
+      ...slideAnimationProps,
     },
     new: {
-      name: 'enterDown',
-      ...SLIDE_PROPS
+      name: 'slideUp',
+      ...slideAnimationProps,
+      direction: 'reverse',
     },
   },
 };

@@ -44,24 +44,3 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         }
     </div>
 </Layout>
-<style>
-    :global(.page):before,
-    :global(.page):after {
-        background: var(--color--foreground);
-        height: var(--border-height);
-        content: '';
-        position: absolute;
-        left: var(--border-height);
-        right: var(--border-height);
-    }
-
-    :global(.page):before {
-        top: 0;
-        border-radius: 0 0 var(--border-height) var(--border-height);
-    }
-
-    :global(.page):after {
-        bottom: 0;
-        border-radius: var(--border-height) var(--border-height)  0 0 ;
-    }
-</style>

@@ -4,9 +4,25 @@ import Layout from "../layouts/Layout.astro";
 import Work from "../components/Work.astro";
 ---
 <Layout title="Résumé" pageName="resume">
-    <button onclick="window.print()">Print Resume</button>
+    <button class="resume__print" onclick="window.print()">Print Resume</button>
     <section class="resume__page">
         <Education/>
         <Work/>
     </section>
 </Layout>
+<style>
+    .resume__page {
+        height: 100%;
+       border-radius: var(--border-height);
+        background: var(--color--light);
+        color: var(--color--dark);
+        overflow: scroll;
+        padding: 5em 3em 10em;
+        margin-bottom: calc(-1*var(--border-height));
+        max-width: 45em;
+    }
+
+    .resume__print {
+        position: sticky;
+    }
+</style>
