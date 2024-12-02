@@ -32,24 +32,6 @@ const { pageName } = Astro.props;
         flex: 1;
     }
 
-    .page:not(.about):before,
-    .page:not(.about):after {
-        background: var(--color--foreground);
-        height: var(--border-height);
-        content: '';
-        position: absolute;
-        width: calc(100% - (2*var(--border-height)));
-    }
-
-    .page:before {
-        top: 0;
-        border-radius: 0 0 var(--border-height) var(--border-height);
-    }
-
-    .page:after {
-        bottom: 0;
-        border-radius: var(--border-height) var(--border-height)  0 0 ;
-    }
 
     .about {
         --color--foreground: var(--color--dark);
@@ -64,7 +46,7 @@ const { pageName } = Astro.props;
         border-radius: var(--border-height);
     }
 
-    .page.resume:after {
+  /*  .page.resume:after {
         --color--foreground: var(--color--dark);
     }
 
@@ -72,7 +54,7 @@ const { pageName } = Astro.props;
     .page.contact:before {
         max-width: 45em;
        left: var(--nav-height);
-    }
+    }*/
 
     :global( .resume .navigation__tab[data-direction="down"] ) {
         --color--foreground: var(--color--dark);
